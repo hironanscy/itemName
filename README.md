@@ -1,8 +1,3 @@
----
-title: README
-author: nagaishi
-slide: false
----
 日本語のデータ項目名を英語に変換するツール
 
 - [1. 概要](#1-概要)
