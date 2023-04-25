@@ -1,0 +1,9 @@
+-------------------------------------------------------------------------------
+Test set: com.example.itemName.itemNameApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 10 s <<< FAILURE! - in com.example.itemName.itemNameApplicationTests
+contextLoads  Time elapsed: 0.004 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'itemNameApplication': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'filepath' in value "${filepath}"
+Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'filepath' in value "${filepath}"
+

@@ -1,0 +1,57 @@
+日本語項目名,強制変換単語,用例,備考
+は,is,私は私
+と,and,私とあなた
+か,or,明日か明後日,疑問とは区別できない
+の, ,体力の限界,noとするとノーと読んでしまうので無い方がマシ
+し, ,見出し,「し」が動詞の〜するの「し」でヒットしてしまうので削除
+ID,ID,端末ID
+ＩＤ,ID,端末ID（全角）
+/,or,初回/継続,スラッシュでまたはを表すため
+／,or,初回/継続,スラッシュでまたはを表すため（全角）
+日,day,利用日
+用,purpose,表示用,useは利用の訳なので重複回避
+額,kingaku,利用額,amountだとお金に限らず訳語がない
+制度,seido,制度区分,業務用語なので訳さない
+その他,other
+入金,payment,,先頭語釈はdepositなので訂正
+サイン,signature,訂正サイン,先頭語釈は三角関数のサインなので訂正
+月,month,支払月,先頭語釈は月曜日なので訂正
+中,ongoing,受付中,先頭語釈は内側なので訂正
+桁,digit,上5桁,先頭語釈はcolumnなので訂正
+目,counted,4桁目,数詞（fourth)が正しいが語順変更できないので意訳する
+有無,exist or not,有無フラグ,左記用例では有フラグと同じなのでor not不要だが文脈によるので付けて意訳
+未,yet,未既婚,ひつじにされてしまう
+カスタマキューブ,customer cube, 固有名詞
+種目,item,預金種目,eventではない語釈を採用（優先上位で上書き）
+止め,stop,とどめが先頭のため
+ルート,route,ルートユーザーが先頭
+開拓店,develop shop
+返戻,return,OC誤訳(refund)
+通常月,regular month
+第,the,第一回,第/一回で切れるため意訳。なお一回は1stでなくonceになる
+年月,year month,,OC誤訳（years）
+残請求,already billed,残請求額,既請求と同じ訳
+電子,electronic,,OC誤訳（electron）
+対象,target,対象額,OC訳はobject
+再登録,reregister
+ア,add on,,アドオンのことと決め打ち
+戻し,refund,,OC訳はreturn
+戻し手数料,refund,,OC訳はreturnFee
+分割,installment,ショッピング分割,分割払のことと決め打ち（OC訳はdivision:区分の訳と同じ）
+出金,repay,,返金をrefundとして入金をpayとしたので
+入出金,pay and repay,,返金をrefundとして入金をpayとしたので
+入返金,pay and refund,,返金をrefundとして入金をpayとしたので
+入返金修正,pay and refund correct,,返金をrefundとして入金をpayとしたので
+以外,other,,OC訳はother than:thanは不要でしょう
+払締,pay close,アドオン払締日延滞金額,「払締」で分割された場合用のエントリ
+受付,receipt,,OCスペルミス
+受付票,receiptSlip,,OCスペルミス
+受信,receipt,,OCスペルミス
+
+
+
+
+
+
+
+

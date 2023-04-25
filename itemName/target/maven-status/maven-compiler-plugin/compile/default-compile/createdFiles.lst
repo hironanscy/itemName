@@ -1,0 +1,5 @@
+com/example/entity/wordlist.class
+com/example/itemName/openAPIConfig.class
+com/example/itemName/itemNameApplication.class
+com/example/itemName/myCORSFilter.class
+com/example/itemName/pycaller.class

@@ -1,0 +1,16 @@
+
+・ビルド
+docker image build -t itemname:latest .
+
+.実行
+docker run --rm -ti -p 8080:8080 --name itemname itemname:latest java -jar -Dspring.profiles.active=container /itemName/target/itemName-0.0.1-SNAPSHOT.jar
+
+
+・Dockerでpython実行
+docker run --rm -ti --name itemname:latest /bin/bash -c "cd python; python3 itemNameEnglish.py ./data/項目一覧.csv"
+
+
+ application.yml の切り替え
+java -jar -Dspring.profiles.active=production 起動したいjarファイル: production: ymlのサフィックス
+
+コマンドラインの場合：./mvnw spring-boot:run -Dspring.profiles.active="dev"

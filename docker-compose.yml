@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  itemName:
+    image: itemname:latest
+    build: ./
+    volumes:
+      - ./itemName:/itemName
+    ports:
+      - 8080:8080
+    command: java -jar -Dspring.profiles.active=container ./target/itemName-0.0.1-SNAPSHOT.jar

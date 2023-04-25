@@ -1,0 +1,7 @@
+springdoc:
+  packagesToScan: com.example.itemName
+  pathsToMatch: "/v1/**"
+server:
+  tomcat:
+    connection-timeout: 300000
+filepath: /itemName

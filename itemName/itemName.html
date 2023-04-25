@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ja">
+<meta charset="UTF-8" >
+<head>
+ <title>英語項目名変換</title>
+ <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+<body>
+    <div id="app">
+        <div class="container">
+            <form @submit.prevent="onSubmit">
+                <v-flex md6>
+                <v-card>
+                    <v-card-title class="font-weight-bold">英語項目名変換</v-card-title>
+                    <div class="form-group">
+                        <v-textarea hide-details="false"
+                            class="mt-0"
+                            solo
+                            label="Solo textarea"
+                            auto-grow
+                            rows="10"
+                            placeholder="日本語項目名：(改行で列挙) "
+                            id="inline" v-model="inline"></v-textarea>
+                        <p class="error-msg" v-if="error"><span v-cloak>{{ error }}</span></p>
+                        <v-btn outlined rounded type="submit">変換</v-btn>
+                    </div>
+                </v-card>
+                </v-flex>
+            </form>
+        </div>
+    </div>
+    <v-app id="word">
+        <div v-show="loading" class="loader">Now loading...</div>
+        <div v-show="!loading" class="itemContainer">
+            <v-data-table
+                :headers="headers"
+                :items="word"
+                :items-per-page=100
+                :footer-props="{itemsPerPageOptions: [100, 200, 500, -1]}">
+            </v-data-table>
+        </div>
+    </v-app>
+    <v-footer>
+        powered by : mecab(形態素解析), EDICT(英和辞書), kakasi(ローマ字変換)　implemented by python, spring boot, vue.js, axios, vuetify<br>
+        dictionary : mecab-ipadic-neologd, HELIOS単語一覧(CS/UC), HELIOS-API英単語一覧(OC)
+    </v-footer>
+    <style>
+        [v-cloak] { display: none }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            inline: '',
+            error: ''
+        },
+        computed: {
+            content: function() {
+            
+                var wordList = [];
+                if (this.inline != ''){
+                    var str = this.inline.split('\n');
+
+                    str.forEach(element => {
+                        if (element != ''){
+                            var word = {};
+                            word.japanese = element.split(',')[0];
+                            if (element.split(',').length > 1) {
+                                word.english = element.split(',')[1];
+                            }
+                            else{ word.english = '' }
+                            wordList.push(word);
+                        }
+                    });
+                }
+                return wordList
+            }
+        },
+        methods: {
+            onSubmit: function () {
+                if (this.inline == '') {
+                    this.error = '項目名は必須です。'
+                    return false
+                }
+                this.error = '';
+                word.loading = true;
+                word.postWordList();
+            }
+        }
+    });
+    var word = new Vue({
+        el: '#word',
+        vuetify: new Vuetify(),
+//        data: { word: [] },
+        data() { return {
+            word: [],
+            loading: false,
+            singleSelect: false,
+                selected: [],
+                headers: [
+                    {
+                        align: 'start',
+                        sortable: false,
+                    },
+                    { text: '日本語項目名', value: 'japanese' },
+                    { text: '英語項目名', value: 'english' },
+                ],
+        }},
+        methods: {
+            postWordList () {
+                const path = 'http://localhost:8080/v1/'
+                axios.post(path, JSON.stringify(app.content), { headers: { "Content-Type": "application/json;charset=UTF-8", accept: 'application/json' }})
+                    .then(response => {
+                        this.word = response.data;
+                        this.loading = false;
+                        })
+                    .catch(error => {
+                        console.log(error);
+                        app.error = error;
+                        this.loading = false;
+                        })
+            }
+        }
+    });
+    </script>
+</body>
+</html>
